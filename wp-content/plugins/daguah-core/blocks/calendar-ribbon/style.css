@@ -1,0 +1,123 @@
+/* Cultural calendar: a ribbon of moments over the chosen moment's collection. */
+.wp-block-daguah-calendar-ribbon {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--400, 32px);
+	min-width: 0;
+}
+
+.daguah-calendar__ribbon {
+	display: flex;
+	gap: var(--wp--preset--spacing--75, 8px);
+	margin-inline: calc(-1 * var(--wp--preset--spacing--200, 16px));
+	padding: var(--wp--preset--spacing--50, 4px) var(--wp--preset--spacing--200, 16px) var(--wp--preset--spacing--100, 12px);
+	overflow-x: auto;
+	scroll-snap-type: x proximity;
+	/* Snap to the gutter, not the screen edge. */
+	scroll-padding-inline: var(--wp--preset--spacing--200, 16px);
+	scrollbar-width: thin;
+}
+
+.daguah-calendar__moment {
+	box-sizing: border-box;
+	display: flex;
+	flex: none;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--50, 4px);
+	width: 11rem;
+	padding: var(--wp--preset--spacing--100, 12px);
+	border: 1px solid var(--wp--custom--color--line, #313131);
+	border-radius: var(--wp--custom--radius--xl, 12px);
+	color: var(--wp--custom--color--text, #F2EADB);
+	text-decoration: none;
+	scroll-snap-align: start;
+	transition:
+		border-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+		background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+		transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.daguah-calendar__moment:hover {
+	border-color: var(--wp--custom--color--text-muted, #ABA598);
+	color: var(--wp--custom--color--text, #F2EADB);
+}
+
+.daguah-calendar__moment:active {
+	transform: scale(0.98);
+}
+
+.daguah-calendar__moment:focus-visible {
+	outline: 2px solid var(--wp--custom--color--focus, #D9A21B);
+	outline-offset: 2px;
+}
+
+.daguah-calendar__moment.is-selected {
+	border-color: var(--wp--custom--color--action, #D9A21B);
+	background: var(--wp--custom--color--raised, #1F1F1F);
+}
+
+.daguah-calendar__date {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--75, 8px);
+	color: var(--wp--custom--color--action, #D9A21B);
+	font-family: var(--wp--preset--font-family--geist-mono, monospace);
+	font-size: var(--wp--preset--font-size--xs, 0.75rem);
+	font-weight: 600;
+	line-height: 1rem;
+}
+
+.daguah-calendar__title {
+	font-size: var(--wp--preset--font-size--base, 1rem);
+	font-weight: 500;
+	line-height: 1.5rem;
+	text-wrap: balance;
+}
+
+.daguah-calendar__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: var(--wp--preset--spacing--75, 8px) var(--wp--preset--spacing--300, 24px);
+}
+
+.daguah-calendar__head p {
+	margin: 0;
+}
+
+.daguah-calendar__excerpt {
+	max-width: 42rem;
+}
+
+.daguah-calendar__all {
+	margin-inline-start: auto;
+}
+
+.daguah-calendar__collection {
+	margin-block-start: var(--wp--preset--spacing--300, 24px);
+	transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.daguah-calendar__collection.is-loading {
+	opacity: 0.5;
+}
+
+.daguah-calendar__error {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--wp--preset--spacing--200, 16px);
+	padding: var(--wp--preset--spacing--200, 16px);
+	border: 1px solid var(--wp--preset--color--laterite, #B5532A);
+	border-radius: var(--wp--custom--radius--xl, 12px);
+}
+
+.daguah-calendar__error p {
+	margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daguah-calendar__moment:active {
+		transform: none;
+	}
+}

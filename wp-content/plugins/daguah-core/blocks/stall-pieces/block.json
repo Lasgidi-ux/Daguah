@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/stall-pieces",
+	"title": "Stall pieces",
+	"category": "daguah",
+	"icon": "grid-view",
+	"description": "Every piece on the stall, with its categories as shortcuts into the filtered shop. Used on the stall template.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"render": "file:./render.php"
+}

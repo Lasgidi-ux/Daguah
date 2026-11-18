@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/landed-price",
+	"title": "Landed price",
+	"category": "daguah",
+	"icon": "calculator",
+	"description": "Item, delivery and estimated duties to the buyer's country, in their currency.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-shop",
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php"
+}

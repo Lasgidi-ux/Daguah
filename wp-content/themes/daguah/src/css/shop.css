@@ -1,0 +1,381 @@
+/**
+ * Shop, category and product page layouts, plus the WooCommerce parts the
+ * theme styles directly (breadcrumbs, notices, price, add to cart form), and
+ * the Thread as a motif: the divider style and the page loading bar.
+ */
+
+/* Header additions ----------------------------------------------------------- */
+
+.daguah-nav .wp-block-daguah-currency-switcher {
+	display: none;
+}
+
+@media (min-width: 960px) {
+	.daguah-nav .wp-block-daguah-currency-switcher {
+		display: block;
+	}
+}
+
+.daguah-nav .daguah-currency__select {
+	min-height: 2.5rem;
+	padding-inline: var(--wp--preset--spacing--75) var(--wp--preset--spacing--500);
+	border-color: transparent;
+	background-color: transparent;
+}
+
+.daguah-nav .daguah-currency__select:hover {
+	border-color: var(--line);
+}
+
+.daguah-mobile-menu__tools {
+	gap: var(--wp--preset--spacing--200);
+}
+
+/* Shop listing ------------------------------------------------------------------ */
+
+.daguah-shop {
+	padding-block: var(--wp--preset--spacing--400) var(--wp--preset--spacing--700);
+}
+
+.daguah-shop > * + * {
+	margin-block-start: var(--wp--preset--spacing--400);
+}
+
+.daguah-shop__head {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--100);
+}
+
+.daguah-shop__head > * {
+	margin: 0;
+}
+
+.daguah-shop__layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--400);
+	align-items: start;
+}
+
+.daguah-shop__layout > * {
+	min-width: 0;
+	margin: 0 !important;
+}
+
+@media (min-width: 1024px) {
+	.daguah-shop__layout {
+		grid-template-columns: 16rem minmax(0, 1fr);
+		gap: var(--wp--preset--spacing--600);
+	}
+
+	.daguah-shop__layout > .wp-block-daguah-shop-filters {
+		position: sticky;
+		top: calc(var(--wp--preset--spacing--900) + var(--wp-admin--admin-bar--height, 0px));
+		max-height: calc(100vh - var(--wp--preset--spacing--900) - var(--wp-admin--admin-bar--height, 0px));
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: thin;
+	}
+
+	.daguah-shop__layout .daguah-product-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+/* Breadcrumbs and notices -------------------------------------------------------- */
+
+.wp-block-woocommerce-breadcrumbs {
+	color: var(--muted);
+	font-size: var(--wp--preset--font-size--xs);
+	line-height: 1rem;
+}
+
+.wp-block-woocommerce-breadcrumbs a {
+	color: var(--muted);
+	text-decoration: none;
+}
+
+.wp-block-woocommerce-breadcrumbs a:hover {
+	color: var(--text);
+}
+
+.wc-block-components-notice-banner,
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+	padding: var(--wp--preset--spacing--200) var(--wp--preset--spacing--300) !important;
+	border: 1px solid var(--line) !important;
+	border-radius: var(--wp--custom--radius--xl) !important;
+	background: var(--raised) !important;
+	color: var(--text) !important;
+	font-size: var(--wp--preset--font-size--sm) !important;
+	line-height: 1.25rem !important;
+}
+
+.wc-block-components-notice-banner.is-error,
+.woocommerce-error {
+	border-color: var(--wp--preset--color--laterite) !important;
+}
+
+.wc-block-components-notice-banner.is-success {
+	border-color: var(--wp--preset--color--palm) !important;
+}
+
+.wc-block-components-notice-banner > svg {
+	fill: currentColor !important;
+	background: transparent !important;
+}
+
+/* Product page -------------------------------------------------------------------- */
+
+/*
+ * Keep clear of the floating header. WooCommerce wraps the product template
+ * in its own div, so main is not a direct child of .wp-site-blocks here.
+ */
+main.daguah-product.wp-block-group {
+	padding-block: calc(var(--wp--preset--spacing--900) + var(--wp--preset--spacing--300)) var(--wp--preset--spacing--700);
+}
+
+.daguah-product > * + * {
+	margin-block-start: var(--wp--preset--spacing--400);
+}
+
+.daguah-product__top {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--400);
+	align-items: start;
+}
+
+.daguah-product__top > * {
+	min-width: 0;
+	margin: 0 !important;
+}
+
+@media (min-width: 1024px) {
+	.daguah-product__top {
+		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+		gap: var(--wp--preset--spacing--700);
+	}
+
+	.daguah-product__buy {
+		position: sticky;
+		top: calc(var(--wp--preset--spacing--900) + var(--wp-admin--admin-bar--height, 0px));
+	}
+}
+
+.daguah-product__buy {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--300);
+}
+
+.daguah-product__buy > * {
+	margin: 0 !important;
+}
+
+.daguah-product__buy .wp-block-post-title {
+	max-width: 680px;
+}
+
+.daguah-product__price,
+.daguah-product__buy .wc-block-components-product-price {
+	color: var(--text);
+	font-family: var(--mono);
+	font-size: var(--wp--preset--font-size--xxl) !important;
+	font-weight: 600;
+	line-height: 2rem;
+}
+
+.daguah-product__buy .wp-block-post-excerpt__excerpt {
+	margin: 0;
+	color: var(--muted);
+}
+
+/* Add to cart: quantity and button on one row. */
+.daguah-product__buy form.cart {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	gap: var(--wp--preset--spacing--100);
+	margin: 0;
+}
+
+.daguah-product__buy .quantity input.qty {
+	box-sizing: border-box;
+	width: 5rem;
+	height: 100%;
+	min-height: 44px;
+	padding: var(--wp--preset--spacing--75);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--lg);
+	background: var(--raised);
+	color: var(--text);
+	font-family: var(--mono);
+	text-align: center;
+}
+
+.daguah-product__buy .single_add_to_cart_button {
+	flex: 1;
+	min-height: 44px;
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--100) !important;
+	border: 0 !important;
+	border-radius: var(--wp--custom--radius--lg) !important;
+	background: var(--action) !important;
+	color: var(--action-text) !important;
+	font-size: var(--wp--preset--font-size--base) !important;
+	font-weight: 600 !important;
+	line-height: 1.5rem !important;
+	transition: background-color var(--t-hover) var(--ease), transform var(--t-layout) var(--ease);
+}
+
+.daguah-product__buy .single_add_to_cart_button:hover {
+	background: var(--action-hover) !important;
+	color: var(--action-hover-text) !important;
+}
+
+.daguah-product__buy .single_add_to_cart_button:active {
+	transform: scale(0.98);
+}
+
+.daguah-product__buy .single_add_to_cart_button:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.daguah-product__buy .stock {
+	margin: 0;
+	color: var(--muted);
+	font-size: var(--wp--preset--font-size--sm);
+}
+
+.daguah-product__story {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--700);
+	padding-block-start: var(--wp--preset--spacing--700);
+}
+
+.daguah-product__story > * {
+	margin: 0 !important;
+}
+
+.daguah-product__details {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--600);
+	align-items: start;
+}
+
+.daguah-product__details > * {
+	min-width: 0;
+	margin: 0 !important;
+}
+
+@media (min-width: 1024px) {
+	.daguah-product__details {
+		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+		gap: var(--wp--preset--spacing--700);
+	}
+}
+
+.daguah-product__about {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--300);
+}
+
+.daguah-product__about > * {
+	max-width: 680px;
+	margin: 0 !important;
+}
+
+.daguah-product__about .wp-block-post-content p {
+	margin: 0 0 var(--wp--preset--spacing--200);
+}
+
+.daguah-product > .wp-block-daguah-complete-the-look {
+	padding-block-start: var(--wp--preset--spacing--700);
+}
+
+/* The Thread as a motif --------------------------------------------------------- */
+
+/* Divider: a gold thread with a knot at each end. */
+.wp-block-separator.is-style-thread {
+	position: relative;
+	height: 2px;
+	margin-inline: auto;
+	border: 0;
+	background: var(--action);
+	opacity: 1;
+}
+
+.wp-block-separator.is-style-thread::before,
+.wp-block-separator.is-style-thread::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	width: 8px;
+	height: 8px;
+	border-radius: 9999px;
+	background: var(--action);
+	transform: translateY(-50%);
+}
+
+.wp-block-separator.is-style-thread::before {
+	left: 0;
+}
+
+.wp-block-separator.is-style-thread::after {
+	right: 0;
+}
+
+/* Loading bar: a thread across the top while the next page loads. */
+.daguah-loading {
+	position: fixed;
+	z-index: 400;
+	top: var(--wp-admin--admin-bar--height, 0px);
+	right: 0;
+	left: 0;
+	height: 2px;
+	background: var(--action);
+	transform: scaleX(0);
+	transform-origin: left;
+	pointer-events: none;
+}
+
+.daguah-loading.is-active {
+	transform: scaleX(0.85);
+	transition: transform 2400ms var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daguah-loading.is-active {
+		transform: scaleX(1);
+		opacity: 0.6;
+		transition: none;
+	}
+}
+
+/* Unrolling the bolt: shop pages without view transitions settle in. */
+.daguah-shop-page.is-unrolling .daguah-shop__layout {
+	animation: daguah-unroll 600ms var(--ease) both;
+}
+
+@keyframes daguah-unroll {
+	from {
+		opacity: 0;
+		transform: translateY(var(--wp--preset--spacing--400));
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daguah-shop-page.is-unrolling .daguah-shop__layout {
+		animation-name: daguah-settle-fade;
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/stall-header",
+	"title": "Stall header",
+	"category": "daguah",
+	"icon": "store",
+	"description": "The stall's cloth, name, maker, place, story, checks, voice intro and next Market Live session. Used on the stall template.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"render": "file:./render.php"
+}

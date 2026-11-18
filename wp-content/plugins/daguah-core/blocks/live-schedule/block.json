@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/live-schedule",
+	"title": "Market Live schedule",
+	"category": "daguah",
+	"icon": "video-alt3",
+	"description": "On now, coming up and past Market Live sessions, with times in the visitor's own time zone.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"viewScript": "daguah-local-time",
+	"render": "file:./render.php"
+}

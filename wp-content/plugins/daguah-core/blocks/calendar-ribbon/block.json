@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/calendar-ribbon",
+	"title": "Cultural calendar",
+	"category": "daguah",
+	"icon": "calendar-alt",
+	"description": "The coming moments on the calendar. Choosing one shows its collection below.",
+	"textdomain": "daguah",
+	"attributes": {
+		"limit": {
+			"type": "number",
+			"default": 8
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": [
+		"file:./style.css",
+		"daguah-shop"
+	],
+	"viewScript": "file:../../build/calendar-ribbon.js",
+	"render": "file:./render.php"
+}

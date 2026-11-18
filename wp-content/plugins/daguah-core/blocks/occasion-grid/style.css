@@ -1,0 +1,93 @@
+/* Shop by occasion: cloth tiles, two across on phones, four on desktop. */
+.wp-block-daguah-occasion-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--200, 16px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+@media (min-width: 1024px) {
+	.wp-block-daguah-occasion-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.wp-block-daguah-occasion-grid > li {
+	min-width: 0;
+	margin: 0;
+}
+
+/* Outer radius 16, padding 8: the cloth takes 16 minus 8 = 8. */
+.daguah-occasion {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--100, 12px);
+	height: 100%;
+	padding: var(--wp--preset--spacing--75, 8px);
+	border: 1px solid var(--wp--custom--color--line, #313131);
+	border-radius: var(--wp--custom--radius--xxl, 16px);
+	background: var(--wp--custom--color--raised, #1F1F1F);
+	color: var(--wp--custom--color--text, #F2EADB);
+	text-decoration: none;
+	transition:
+		border-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+		transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.daguah-occasion:hover {
+	border-color: var(--wp--custom--color--text-muted, #ABA598);
+	color: var(--wp--custom--color--text, #F2EADB);
+	transform: translateY(-4px);
+}
+
+.daguah-occasion:active {
+	transform: scale(0.98);
+}
+
+.daguah-occasion:focus-visible {
+	outline: 2px solid var(--wp--custom--color--focus, #D9A21B);
+	outline-offset: 2px;
+}
+
+.daguah-occasion__cloth {
+	aspect-ratio: 3 / 2;
+	max-width: 100%;
+	border-radius: var(--wp--custom--radius--lg, 8px);
+}
+
+.daguah-occasion__label {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--25, 2px);
+	padding: 0 var(--wp--preset--spacing--75, 8px) var(--wp--preset--spacing--75, 8px);
+}
+
+.daguah-occasion__name {
+	font-size: var(--wp--preset--font-size--base, 1rem);
+	font-weight: 500;
+	line-height: 1.5rem;
+	text-wrap: balance;
+}
+
+.daguah-occasion__count {
+	color: var(--wp--custom--color--text-muted, #ABA598);
+	font-size: var(--wp--preset--font-size--xs, 0.75rem);
+	line-height: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daguah-occasion:hover,
+	.daguah-occasion:active {
+		transform: none;
+	}
+}
+
+.daguah-occasion__next {
+	color: var(--wp--custom--color--action, #D9A21B);
+	font-size: var(--wp--preset--font-size--xs, 0.75rem);
+	font-weight: 500;
+	line-height: 1rem;
+}

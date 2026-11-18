@@ -1,0 +1,109 @@
+/* Market Live strip: one band across the page. */
+.wp-block-daguah-live-strip {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-items: center;
+	gap: var(--wp--preset--spacing--200, 16px);
+	padding: var(--wp--preset--spacing--300, 24px);
+	border: 1px solid var(--wp--custom--color--line, #313131);
+	border-radius: var(--wp--custom--radius--xxl, 16px);
+	background: var(--wp--custom--color--secondary, #24306B);
+	color: var(--wp--custom--color--on-secondary, #F2EADB);
+}
+
+@media (min-width: 1024px) {
+	.wp-block-daguah-live-strip {
+		grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) auto;
+		gap: var(--wp--preset--spacing--400, 32px);
+		padding: var(--wp--preset--spacing--300, 24px) var(--wp--preset--spacing--400, 32px);
+	}
+}
+
+.daguah-live__badge {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--75, 8px);
+	font-size: var(--wp--preset--font-size--xs, 0.75rem);
+	font-weight: 600;
+	line-height: 1rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.daguah-live__dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 9999px;
+	background: var(--wp--preset--color--lantern, #D9A21B);
+}
+
+.is-live .daguah-live__dot {
+	background: var(--wp--preset--color--laterite, #B5532A);
+	animation: daguah-live-pulse 1200ms cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+}
+
+@keyframes daguah-live-pulse {
+	from { opacity: 1; }
+	to { opacity: 0.3; }
+}
+
+.daguah-live__body p {
+	margin: 0;
+}
+
+.daguah-live__title {
+	font-size: var(--wp--preset--font-size--lg, 1.125rem);
+	font-weight: 500;
+	line-height: 1.75rem;
+	text-wrap: balance;
+}
+
+.daguah-live__meta {
+	font-size: var(--wp--preset--font-size--sm, 0.875rem);
+	line-height: 1.25rem;
+	opacity: 0.85;
+}
+
+.daguah-live__meta time {
+	font-family: var(--wp--preset--font-family--geist-mono, monospace);
+}
+
+.daguah-live__tray {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--50, 4px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--wp--preset--font-size--sm, 0.875rem);
+	line-height: 1.25rem;
+}
+
+.daguah-live__tray li::before {
+	content: "";
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	margin-inline-end: var(--wp--preset--spacing--75, 8px);
+	border-radius: 9999px;
+	background: var(--wp--preset--color--lantern, #D9A21B);
+	vertical-align: middle;
+}
+
+.wp-block-daguah-live-strip .daguah-live__cta {
+	justify-self: start;
+	background: var(--wp--preset--color--lantern, #D9A21B);
+	color: var(--wp--preset--color--night, #131209);
+}
+
+.wp-block-daguah-live-strip .daguah-live__cta:hover {
+	background: var(--wp--preset--color--shea, #F2EADB);
+	color: var(--wp--preset--color--night, #131209);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.is-live .daguah-live__dot {
+		animation: none;
+	}
+}

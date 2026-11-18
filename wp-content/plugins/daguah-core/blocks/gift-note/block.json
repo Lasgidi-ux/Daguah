@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/gift-note",
+	"title": "Gift note",
+	"category": "daguah",
+	"icon": "format-quote",
+	"description": "Write a note and record a voice message for a gift. Kept on the buyer's device until checkout attaches it to the order.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"viewScript": "file:../../build/gift-note.js",
+	"render": "file:./render.php"
+}

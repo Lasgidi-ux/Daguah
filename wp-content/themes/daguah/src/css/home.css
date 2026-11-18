@@ -1,0 +1,658 @@
+/**
+ * Home page sections and shared section furniture.
+ *
+ * Every value resolves to a token in theme.json. Section layout:
+ *   - sections stack with 96px between them (64px on phones)
+ *   - each section opens with an eyebrow, a heading and a short line
+ *   - grids pick column counts their items fill: 4 benefits, 3 steps,
+ *     3 testimonials, 8 occasions, 4 stalls
+ */
+
+/* Sections ------------------------------------------------------------- */
+
+.daguah-section {
+	padding-block: var(--wp--preset--spacing--700);
+}
+
+@media (min-width: 768px) {
+	.daguah-section {
+		padding-block: var(--wp--preset--spacing--900);
+	}
+}
+
+.daguah-section > * + * {
+	margin-block-start: var(--wp--preset--spacing--500);
+}
+
+.daguah-section__head {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--100);
+}
+
+.daguah-section__head > * {
+	margin: 0;
+}
+
+.daguah-section__head .wp-block-heading {
+	max-width: 680px;
+}
+
+.daguah-section__lead {
+	max-width: 680px;
+	color: var(--muted);
+}
+
+.daguah-eyebrow {
+	color: var(--action);
+	font-size: var(--wp--preset--font-size--xs);
+	font-weight: 600;
+	line-height: 1rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.daguah-section--tight {
+	padding-block: var(--wp--preset--spacing--400);
+}
+
+/* The front page's post content runs edge to edge; sections set their own width. */
+.is-under-nav > .wp-block-post-content > * {
+	margin-block: 0;
+}
+
+.daguah-lantern-section {
+	padding-block: var(--wp--preset--spacing--400);
+}
+
+/* Inline only, so the section's spacing above the list still applies. */
+ol.daguah-steps {
+	margin-inline: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* The search band sits close under the hero. */
+.daguah-search.daguah-section {
+	padding-block-end: var(--wp--preset--spacing--400);
+}
+
+/* Grids that fill their rows ------------------------------------------- */
+
+.daguah-grid-4,
+.daguah-grid-3 {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--300);
+}
+
+.daguah-grid-4 > *,
+.daguah-grid-3 > * {
+	min-width: 0;
+	margin: 0 !important;
+}
+
+@media (min-width: 600px) {
+	.daguah-grid-4 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1024px) {
+	.daguah-grid-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.daguah-grid-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+/* Product grid (calendar collection, and the shop from Stage 4) -------- */
+
+.daguah-product-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--200);
+}
+
+@media (min-width: 1024px) {
+	.daguah-product-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--wp--preset--spacing--300);
+	}
+}
+
+.daguah-product-grid > * {
+	min-width: 0;
+}
+
+/* One link per card, stretched over it, so the fit chip can be its own button. */
+.daguah-product-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.daguah-product-card__title {
+	margin: 0;
+}
+
+.daguah-product-card__link {
+	color: var(--text);
+	text-decoration: none;
+}
+
+.daguah-product-card__link::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+}
+
+.daguah-product-card__link:hover {
+	color: var(--text);
+}
+
+.daguah-product-card__link:focus-visible {
+	outline: none;
+}
+
+.daguah-product-card:has(.daguah-product-card__link:focus-visible) {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.daguah-product-card__media {
+	aspect-ratio: 4 / 5;
+	max-width: 100%;
+}
+
+.daguah-product-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.daguah-product-card .daguah-card__body {
+	flex: 1;
+}
+
+.daguah-product-card .daguah-card__body p {
+	margin: 0;
+}
+
+.daguah-product-card__title {
+	text-wrap: balance;
+}
+
+.daguah-product-card .daguah-price {
+	margin-block-start: auto !important;
+	padding-block-start: var(--wp--preset--spacing--50);
+}
+
+.daguah-product-card .daguah-price del {
+	color: var(--muted);
+	font-weight: 400;
+}
+
+.daguah-product-card .daguah-price ins {
+	text-decoration: none;
+}
+
+.daguah-product-card__shot {
+	color: var(--muted);
+}
+
+/* Empty state: a cloth and one calm sentence. */
+.daguah-empty {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--200);
+	align-items: center;
+	padding: var(--wp--preset--spacing--75);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--xxl);
+}
+
+.daguah-empty__cloth {
+	height: 120px;
+	border-radius: var(--wp--custom--radius--lg);
+}
+
+.daguah-empty p {
+	margin: 0;
+	padding: 0 var(--wp--preset--spacing--100) var(--wp--preset--spacing--100);
+}
+
+@media (min-width: 768px) {
+	.daguah-empty {
+		grid-template-columns: 16rem minmax(0, 1fr);
+	}
+
+	.daguah-empty p {
+		padding: 0;
+	}
+}
+
+/* The Opening ------------------------------------------------------------ */
+
+/* The market opens at dusk: this band keeps the dusk colours in both modes. */
+.wp-block-cover.daguah-opening {
+	align-items: stretch;
+	min-height: min(92svh, 880px);
+	padding: 0;
+	color: var(--text);
+}
+
+/*
+ * The film. The shade keeps the headline readable over the brighter shots:
+ * dark behind the words on the left, open on the right where the hands work,
+ * and settling into the page at the bottom. Night is #131209.
+ */
+.daguah-opening .daguah-opening__film {
+	z-index: 0;
+}
+
+.daguah-opening__shade {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	background:
+		linear-gradient(180deg, rgb(19 18 9 / 0.55) 0%, rgb(19 18 9 / 0) 30%, rgb(19 18 9 / 0) 68%, rgb(19 18 9 / 0.92) 100%),
+		linear-gradient(90deg, rgb(19 18 9 / 0.82) 0%, rgb(19 18 9 / 0.55) 42%, rgb(19 18 9 / 0) 78%);
+}
+
+/* On phones the words run across the whole film, so the shade does too. */
+@media (max-width: 767px) {
+	.daguah-opening__shade {
+		background: linear-gradient(180deg, rgb(19 18 9 / 0.6) 0%, rgb(19 18 9 / 0.5) 50%, rgb(19 18 9 / 0.92) 100%);
+	}
+}
+
+.daguah-opening__pause {
+	position: absolute;
+	inset-block-end: var(--wp--preset--spacing--200);
+	inset-inline-end: var(--wp--preset--spacing--200);
+	z-index: 2;
+	display: grid;
+	place-items: center;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	border: 1px solid rgb(242 234 219 / 0.35);
+	border-radius: 9999px;
+	background: rgb(19 18 9 / 0.55);
+	color: var(--wp--preset--color--shea);
+	cursor: pointer;
+	backdrop-filter: blur(6px);
+	transition: border-color 300ms var(--ease);
+}
+
+.daguah-opening__pause[hidden] {
+	display: none;
+}
+
+.daguah-opening__pause:hover {
+	border-color: var(--wp--preset--color--shea);
+}
+
+.daguah-opening__pause:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.daguah-opening__pause svg {
+	display: block;
+	width: 20px;
+	height: 20px;
+	fill: currentColor;
+}
+
+.daguah-opening__pause .is-play,
+.daguah-opening__pause.is-paused .is-pause {
+	display: none;
+}
+
+.daguah-opening__pause.is-paused .is-play {
+	display: block;
+}
+
+/* The canopy hangs just below the floating header, so the lanterns are seen. */
+.daguah-opening > .wp-block-cover__inner-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-block-start: calc(var(--wp--preset--spacing--900) + var(--wp-admin--admin-bar--height, 0px));
+	color: var(--text);
+}
+
+.daguah-opening > .wp-block-cover__inner-container > * {
+	margin-block: 0;
+}
+
+.daguah-opening .wp-block-daguah-lantern-row {
+	width: 100%;
+}
+
+.daguah-opening__content {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--300);
+	width: 100%;
+	max-width: 1280px;
+	margin-inline: auto;
+	padding: var(--wp--preset--spacing--700) var(--wp--preset--spacing--200) var(--wp--preset--spacing--800);
+}
+
+.daguah-opening__content > * {
+	margin-block: 0 !important;
+}
+
+.daguah-opening__content .wp-block-heading {
+	max-width: 680px;
+}
+
+.daguah-proof {
+	color: var(--muted);
+	font-family: var(--mono);
+	font-variant-numeric: tabular-nums;
+}
+
+/* The headline settles in once the lanterns have warmed. */
+.daguah-settle {
+	animation: daguah-settle 800ms var(--ease) both;
+	animation-delay: 1250ms;
+}
+
+.daguah-settle + .daguah-settle {
+	animation-delay: 1400ms;
+}
+
+.daguah-settle + .daguah-settle + .daguah-settle {
+	animation-delay: 1550ms;
+}
+
+.daguah-settle + .daguah-settle + .daguah-settle + .daguah-settle {
+	animation-delay: 1700ms;
+}
+
+@keyframes daguah-settle {
+	from {
+		opacity: 0;
+		transform: translateY(var(--wp--preset--spacing--400));
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes daguah-settle-fade {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daguah-settle {
+		animation-name: daguah-settle-fade;
+		animation-delay: 0s !important;
+	}
+}
+
+/* Search ------------------------------------------------------------------- */
+
+.daguah-search .wp-block-search__inside-wrapper {
+	gap: var(--wp--preset--spacing--75);
+	max-width: 680px;
+	padding: var(--wp--preset--spacing--75);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--xxl);
+	background: var(--raised);
+}
+
+.daguah-search .wp-block-search__input {
+	min-width: 0;
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--100);
+	border: 0;
+	border-radius: var(--wp--custom--radius--lg);
+	background: transparent;
+	color: var(--text);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--lg);
+	line-height: 1.75rem;
+}
+
+.daguah-search .wp-block-search__input::placeholder {
+	color: var(--muted);
+}
+
+.daguah-search .wp-block-search__input:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 0;
+}
+
+.daguah-search .wp-block-search__button {
+	margin: 0;
+	border-radius: var(--wp--custom--radius--lg);
+}
+
+.daguah-search .wp-block-search__button svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: currentColor;
+}
+
+.daguah-search__popular a {
+	color: var(--text);
+}
+
+.daguah-search__popular a:hover {
+	color: var(--link);
+}
+
+/* Benefits and steps --------------------------------------------------- */
+
+.daguah-benefit,
+.daguah-step {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--100);
+}
+
+.daguah-benefit > *,
+.daguah-step > * {
+	margin: 0 !important;
+}
+
+.daguah-benefit .wp-block-heading,
+.daguah-step .wp-block-heading {
+	margin-block-start: var(--wp--preset--spacing--100) !important;
+}
+
+.daguah-step__number {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border: 1px solid var(--action);
+	border-radius: var(--wp--custom--radius--full);
+	color: var(--action);
+	font-family: var(--mono);
+	font-size: var(--wp--preset--font-size--lg);
+	font-weight: 600;
+	line-height: 1.75rem;
+}
+
+.daguah-benefit p:not(.daguah-step__number),
+.daguah-step p:not(.daguah-step__number) {
+	color: var(--muted);
+}
+
+/* Testimonials ----------------------------------------------------------- */
+
+.daguah-quote.wp-block-quote {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--300);
+	height: 100%;
+	margin: 0;
+	padding: var(--wp--preset--spacing--300);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--xxl);
+	background: var(--raised);
+}
+
+.daguah-quote.wp-block-quote p {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--lg);
+	font-weight: 500;
+	line-height: 1.75rem;
+	text-wrap: pretty;
+}
+
+.daguah-quote.wp-block-quote cite {
+	margin-block-start: auto;
+	color: var(--muted);
+	font-size: var(--wp--preset--font-size--sm);
+	font-style: normal;
+	font-weight: 500;
+	line-height: 1.25rem;
+}
+
+/* FAQ ------------------------------------------------------------------------ */
+
+.daguah-faq {
+	max-width: 880px;
+}
+
+.daguah-faq .wp-block-details {
+	margin: 0;
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--xl);
+	transition: border-color var(--t-hover) var(--ease);
+}
+
+.daguah-faq .wp-block-details + .wp-block-details {
+	margin-block-start: var(--wp--preset--spacing--100);
+}
+
+.daguah-faq .wp-block-details[open] {
+	border-color: var(--muted);
+}
+
+.daguah-faq summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--200);
+	padding: var(--wp--preset--spacing--200) var(--wp--preset--spacing--300);
+	border-radius: var(--wp--custom--radius--xl);
+	font-size: var(--wp--preset--font-size--lg);
+	font-weight: 500;
+	line-height: 1.75rem;
+	list-style: none;
+	cursor: pointer;
+}
+
+.daguah-faq summary::-webkit-details-marker {
+	display: none;
+}
+
+/* A plus that turns into a cross. */
+.daguah-faq summary::after {
+	content: "+";
+	flex: none;
+	color: var(--action);
+	font-family: var(--mono);
+	font-size: var(--wp--preset--font-size--xl);
+	line-height: 1.75rem;
+	transition: transform var(--t-layout) var(--ease);
+}
+
+.daguah-faq details[open] > summary::after {
+	transform: rotate(45deg);
+}
+
+.daguah-faq summary:hover {
+	color: var(--link);
+}
+
+.daguah-faq summary:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.daguah-faq .wp-block-details > :not(summary) {
+	max-width: 680px;
+	margin: 0;
+	padding: 0 var(--wp--preset--spacing--300) var(--wp--preset--spacing--300);
+	color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daguah-faq summary::after {
+		transition: none;
+	}
+}
+
+/* Seller call to action -------------------------------------------------- */
+
+.daguah-split {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-items: center;
+	gap: var(--wp--preset--spacing--400);
+	padding: var(--wp--preset--spacing--75);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--xxl);
+	background: var(--raised);
+}
+
+.daguah-split > * {
+	min-width: 0;
+	margin: 0 !important;
+}
+
+.daguah-split__text {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--200);
+	padding: var(--wp--preset--spacing--300);
+}
+
+.daguah-split__text > * {
+	margin: 0 !important;
+}
+
+.daguah-split .wp-block-daguah-cloth {
+	min-height: 200px;
+	border-radius: var(--wp--custom--radius--lg);
+}
+
+@media (min-width: 768px) {
+	.daguah-split {
+		grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+	}
+
+	.daguah-split .wp-block-daguah-cloth {
+		height: 100% !important;
+	}
+}
+
+/* Final call to action ------------------------------------------------- */
+
+.daguah-final {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--300);
+}
+
+.daguah-final > * {
+	margin: 0 !important;
+}

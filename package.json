@@ -1,0 +1,35 @@
+{
+  "name": "daguah",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DAGUAH marketplace: block theme (daguah) and functionality plugin (daguah-core).",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "assets": "node scripts/copy-assets.mjs",
+    "hero-video": "node scripts/hero-video.mjs",
+    "contrast": "node scripts/contrast.mjs",
+    "test:cloth": "node scripts/cloth-parity.mjs",
+    "env": "npx @wordpress/env start",
+    "playground": "node scripts/playground.mjs",
+    "screenshots": "node scripts/screenshots.mjs",
+    "record": "node scripts/record.mjs",
+    "fetch-plugins": "node scripts/fetch-plugins.mjs",
+    "lint:php": "node scripts/php-lint.mjs",
+    "test:fit": "node scripts/fit-parity.mjs",
+    "verify": "node scripts/playground.mjs --verify"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.13"
+  },
+  "devDependencies": {
+    "@fontsource-variable/geist-mono": "^5.0.0",
+    "@fontsource-variable/manrope": "^5.0.0",
+    "@phosphor-icons/core": "^2.1.1",
+    "@php-wasm/cli": "*",
+    "@wordpress/scripts": "^30.0.0",
+    "@wp-playground/cli": "*"
+  }
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/fit-chip",
+	"title": "Fit chip",
+	"category": "daguah",
+	"icon": "yes-alt",
+	"description": "Tells the buyer whether this piece fits them, from their Fit Mirror measurements.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-shop",
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php"
+}

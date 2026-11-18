@@ -1,0 +1,48 @@
+/*
+ * Lantern words. Heading 1 sizes: 36/40 on phones, 48/48 on tablets,
+ * 60/60 on desktop. Measure capped at 680px like the hero.
+ */
+.wp-block-daguah-lantern-words {
+	padding-block: var(--wp--preset--spacing--900, 96px);
+}
+
+.daguah-lantern-words__text {
+	max-width: 680px;
+	margin: 0;
+	color: var(--wp--custom--color--text, #F2EADB);
+	font-size: var(--wp--preset--font-size--display-sm, 2.25rem);
+	font-weight: 600;
+	line-height: 2.5rem;
+	text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+	.daguah-lantern-words__text {
+		font-size: var(--wp--preset--font-size--display-md, 3rem);
+		line-height: 1;
+	}
+}
+
+@media (min-width: 1024px) {
+	.daguah-lantern-words__text {
+		font-size: var(--wp--preset--font-size--display-lg, 3.75rem);
+	}
+}
+
+.daguah-lantern-words__line {
+	display: block;
+}
+
+.daguah-lantern-words__line + .daguah-lantern-words__line {
+	margin-block-start: var(--wp--preset--spacing--100, 12px);
+}
+
+/* Dimmed only once the script is running, so the text is never lost. */
+.wp-block-daguah-lantern-words.is-armed .daguah-lantern-words__word {
+	opacity: 0.3;
+	transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wp-block-daguah-lantern-words.is-armed .daguah-lantern-words__word.is-lit {
+	opacity: 1;
+}

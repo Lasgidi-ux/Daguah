@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/lantern-row",
+	"title": "Lantern row",
+	"category": "daguah",
+	"icon": "lightbulb",
+	"description": "Small lanterns hanging along a strip of cloth. They warm up one by one as the page opens.",
+	"textdomain": "daguah",
+	"attributes": {
+		"count": { "type": "number", "default": 9 },
+		"seed": { "type": "string", "default": "DAGUAH lanterns" },
+		"family": {
+			"type": "string",
+			"enum": [ "adire", "kente", "bogolan", "kuba", "mix" ],
+			"default": "kente"
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/shop-filters",
+	"title": "Shop filters",
+	"category": "daguah",
+	"icon": "filter",
+	"description": "Filters for the shop and category pages. They work without JavaScript and every filtered view has its own link.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-shop",
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php"
+}

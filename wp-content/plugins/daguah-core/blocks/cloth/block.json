@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/cloth",
+	"title": "Cloth",
+	"category": "daguah",
+	"icon": "art",
+	"description": "A textile pattern generated from a seed. The same seed always gives the same cloth.",
+	"keywords": [ "pattern", "adire", "kente", "bogolan", "kuba" ],
+	"textdomain": "daguah",
+	"attributes": {
+		"seed": { "type": "string", "default": "DAGUAH" },
+		"family": {
+			"type": "string",
+			"enum": [ "adire", "kente", "bogolan", "kuba", "mix" ],
+			"default": "mix"
+		},
+		"height": { "type": "number", "default": 160 },
+		"animate": { "type": "boolean", "default": false }
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"viewScript": "file:../../build/cloth-view.js",
+	"render": "file:./render.php"
+}

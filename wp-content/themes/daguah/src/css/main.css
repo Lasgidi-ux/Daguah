@@ -1,0 +1,992 @@
+/**
+ * DAGUAH theme styles.
+ *
+ * Every value here resolves to a token in theme.json (colour roles, the type
+ * scale, the spacing table, Tailwind radii, one motion curve). Nothing is
+ * invented in this file. Sections:
+ *   1. Aliases and responsive heading steps
+ *   2. Base
+ *   3. Named text styles
+ *   4. Buttons and their states
+ *   5. Cards, tags, skeletons
+ *   6. Floating header
+ *   7. Mobile menu
+ *   8. Footer
+ *   9. Motion utilities
+ *  10. System sheet (review page)
+ */
+
+/* 1. Aliases and responsive heading steps ------------------------------- */
+
+:root {
+	--base: var(--wp--custom--color--base);
+	--raised: var(--wp--custom--color--raised);
+	--line: var(--wp--custom--color--line);
+	--text: var(--wp--custom--color--text);
+	--muted: var(--wp--custom--color--text-muted);
+	--action: var(--wp--custom--color--action);
+	--action-text: var(--wp--custom--color--action-text);
+	--action-hover: var(--wp--custom--color--action-hover);
+	--action-hover-text: var(--wp--custom--color--action-hover-text);
+	--link: var(--wp--custom--color--link);
+	--focus: var(--wp--custom--color--focus);
+	--ease: var(--wp--custom--motion--ease);
+	--t-layout: var(--wp--custom--motion--layout);
+	--t-hover: var(--wp--custom--motion--hover);
+	--mono: var(--wp--preset--font-family--geist-mono);
+
+	/* Heading steps at phone width. Each is a scale step with its paired line height. */
+	--daguah-h1: var(--wp--preset--font-size--display-sm);
+	--daguah-h1-lh: 2.5rem;
+	--daguah-h2: var(--wp--preset--font-size--xxxl);
+	--daguah-h2-lh: 2.25rem;
+	--daguah-h3: var(--wp--preset--font-size--xxl);
+	--daguah-h3-lh: 2rem;
+	--daguah-h4: var(--wp--preset--font-size--xl);
+	--daguah-h4-lh: 1.75rem;
+	--daguah-h5: var(--wp--preset--font-size--xl);
+	--daguah-h5-lh: 1.75rem;
+	--daguah-h6: var(--wp--preset--font-size--lg);
+	--daguah-h6-lh: 1.75rem;
+}
+
+@media (min-width: 768px) {
+	:root {
+		--daguah-h1: var(--wp--preset--font-size--display-md);
+		--daguah-h1-lh: 1;
+		--daguah-h2: var(--wp--preset--font-size--display-sm);
+		--daguah-h2-lh: 2.5rem;
+		--daguah-h3: var(--wp--preset--font-size--xxxl);
+		--daguah-h3-lh: 2.25rem;
+		--daguah-h4: var(--wp--preset--font-size--xxl);
+		--daguah-h4-lh: 2rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--daguah-h1: var(--wp--preset--font-size--display-lg);
+		--daguah-h2: var(--wp--preset--font-size--display-md);
+		--daguah-h2-lh: 1;
+		--daguah-h3: var(--wp--preset--font-size--display-sm);
+		--daguah-h3-lh: 2.5rem;
+		--daguah-h4: var(--wp--preset--font-size--xxxl);
+		--daguah-h4-lh: 2.25rem;
+		--daguah-h5: var(--wp--preset--font-size--xxl);
+		--daguah-h5-lh: 2rem;
+		--daguah-h6: var(--wp--preset--font-size--xl);
+	}
+}
+
+/* 2. Base ---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	scroll-padding-top: var(--wp--preset--spacing--900);
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+ * Headings break where the thought breaks on wide screens. On phones the
+ * forced breaks would strand a word, so balancing takes over.
+ */
+@media (max-width: 767px) {
+	h1 br,
+	h2 br,
+	h3 br {
+		display: none;
+	}
+}
+
+p,
+li,
+figcaption,
+blockquote,
+dd {
+	text-wrap: pretty;
+}
+
+/* No italics anywhere, including what WooCommerce and Dokan ship. */
+em,
+i,
+cite,
+address,
+dfn,
+var,
+blockquote,
+.woocommerce em,
+.dokan-dashboard em {
+	font-style: normal;
+}
+
+em {
+	font-weight: 500;
+}
+
+b,
+strong {
+	font-weight: 700;
+}
+
+::selection {
+	background: var(--wp--preset--color--lantern);
+	color: var(--wp--preset--color--night);
+}
+
+:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+a {
+	text-underline-offset: 4px;
+	text-decoration-thickness: 1px;
+	transition: color var(--t-hover) var(--ease), opacity var(--t-hover) var(--ease);
+}
+
+a:hover {
+	color: var(--text);
+}
+
+/* Prices, measurements, order numbers and the currency switcher. */
+.is-mono,
+.daguah-price,
+.woocommerce-Price-amount,
+.wc-block-components-product-price,
+data {
+	font-family: var(--mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.skip-link.screen-reader-text:focus {
+	top: var(--wp--preset--spacing--100);
+	left: var(--wp--preset--spacing--100);
+	z-index: 200;
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--100);
+	border-radius: var(--wp--custom--radius--lg);
+	background: var(--action);
+	color: var(--action-text);
+	font-size: var(--wp--preset--font-size--sm);
+	font-weight: 600;
+	line-height: 1.25rem;
+	text-decoration: none;
+}
+
+.wp-site-blocks > main {
+	margin-block-start: 0;
+	padding-block-start: var(--wp--preset--spacing--900);
+}
+
+/* A template whose first section runs under the floating header opts out. */
+.wp-site-blocks > main.is-under-nav {
+	padding-block-start: 0;
+}
+
+/* 3. Named text styles --------------------------------------------------- */
+
+.heading-1 { font-size: var(--daguah-h1); line-height: var(--daguah-h1-lh); font-weight: 600; }
+.heading-2 { font-size: var(--daguah-h2); line-height: var(--daguah-h2-lh); font-weight: 600; }
+.heading-3 { font-size: var(--daguah-h3); line-height: var(--daguah-h3-lh); font-weight: 600; }
+.heading-4 { font-size: var(--daguah-h4); line-height: var(--daguah-h4-lh); font-weight: 600; }
+.heading-5 { font-size: var(--daguah-h5); line-height: var(--daguah-h5-lh); font-weight: 600; }
+.heading-6 { font-size: var(--daguah-h6); line-height: var(--daguah-h6-lh); font-weight: 600; }
+
+.title-1, .is-style-title-1 { font-size: var(--wp--preset--font-size--xl); line-height: 1.75rem; font-weight: 500; }
+.title-2, .is-style-title-2 { font-size: var(--wp--preset--font-size--lg); line-height: 1.75rem; font-weight: 500; }
+.title-3, .is-style-title-3 { font-size: var(--wp--preset--font-size--base); line-height: 1.5rem; font-weight: 500; }
+.title-4, .is-style-title-4 { font-size: var(--wp--preset--font-size--sm); line-height: 1.25rem; font-weight: 500; }
+.title-5, .is-style-title-5 { font-size: var(--wp--preset--font-size--xs); line-height: 1rem; font-weight: 500; }
+
+.body-1, .is-style-body-1 { font-size: var(--wp--preset--font-size--base); line-height: 1.5rem; font-weight: 600; }
+.body-2, .is-style-body-2 { font-size: var(--wp--preset--font-size--base); line-height: 1.5rem; font-weight: 500; }
+.body-3, .is-style-body-3 { font-size: var(--wp--preset--font-size--base); line-height: 1.5rem; font-weight: 400; }
+.body-4, .is-style-body-4 { font-size: var(--wp--preset--font-size--sm); line-height: 1.25rem; font-weight: 600; }
+.body-5, .is-style-body-5 { font-size: var(--wp--preset--font-size--sm); line-height: 1.25rem; font-weight: 500; }
+.body-6, .is-style-body-6 { font-size: var(--wp--preset--font-size--sm); line-height: 1.25rem; font-weight: 400; }
+
+.button-lg { font-size: var(--wp--preset--font-size--lg); line-height: 1.75rem; font-weight: 600; }
+.button-md { font-size: var(--wp--preset--font-size--base); line-height: 1.5rem; font-weight: 600; }
+.button-sm { font-size: var(--wp--preset--font-size--sm); line-height: 1.25rem; font-weight: 600; }
+.button-xsm { font-size: var(--wp--preset--font-size--xs); line-height: 1rem; font-weight: 600; }
+
+.caption-1, .is-style-caption-1 { font-size: var(--wp--preset--font-size--sm); line-height: 1.25rem; font-weight: 500; }
+.caption-2, .is-style-caption-2 { font-size: var(--wp--preset--font-size--sm); line-height: 1.25rem; font-weight: 400; }
+.caption-3, .is-style-caption-3 { font-size: var(--wp--preset--font-size--xs); line-height: 1rem; font-weight: 600; }
+.caption-4, .is-style-caption-4 { font-size: var(--wp--preset--font-size--xs); line-height: 1rem; font-weight: 500; }
+.caption-5, .is-style-caption-5 { font-size: var(--wp--preset--font-size--xs); line-height: 1rem; font-weight: 400; }
+
+.is-muted,
+.caption-2,
+.caption-5,
+.is-style-caption-2,
+.is-style-caption-5 {
+	color: var(--muted);
+}
+
+/* Hero heading and subheading share one measure. */
+.daguah-measure {
+	max-width: 680px;
+}
+
+/* The one gradient in the system: hero heading text, left to right. */
+.is-style-hero-heading {
+	max-width: 680px;
+	background-image: linear-gradient(90deg, var(--wp--custom--color--hero-from), var(--wp--custom--color--hero-to));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+}
+
+/* 4. Buttons and their states ------------------------------------------- */
+
+.wp-element-button,
+.wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--75);
+	border: 1px solid transparent;
+	cursor: pointer;
+	transition:
+		background-color var(--t-hover) var(--ease),
+		border-color var(--t-hover) var(--ease),
+		color var(--t-hover) var(--ease),
+		opacity var(--t-hover) var(--ease),
+		transform var(--t-layout) var(--ease);
+}
+
+.wp-element-button:hover,
+.wp-block-button__link:hover {
+	background-color: var(--action-hover);
+	color: var(--action-hover-text);
+}
+
+.wp-element-button:active,
+.wp-block-button__link:active {
+	transform: scale(0.98);
+}
+
+.wp-element-button:focus-visible,
+.wp-block-button__link:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.wp-element-button svg,
+.wp-block-button__link svg {
+	flex: none;
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+/* Header size: Button-sm. */
+.wp-block-button.has-sm-font-size .wp-block-button__link,
+.wp-block-button__link.has-sm-font-size {
+	font-size: var(--wp--preset--font-size--sm);
+	line-height: 1.25rem;
+}
+
+/* Secondary: a full border, never one side. */
+.wp-block-button.is-style-outline > .wp-block-button__link,
+.wp-element-button.is-style-outline {
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--100);
+	border: 1px solid var(--muted);
+	background-color: transparent;
+	color: var(--text);
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link:hover,
+.wp-element-button.is-style-outline:hover {
+	border-color: var(--text);
+	background-color: var(--raised);
+	color: var(--text);
+}
+
+/* Quiet: text only, for tertiary actions. */
+.wp-block-button.is-style-ghost > .wp-block-button__link {
+	background-color: transparent;
+	color: var(--text);
+}
+
+.wp-block-button.is-style-ghost > .wp-block-button__link:hover {
+	background-color: var(--raised);
+	color: var(--text);
+}
+
+/* Disabled looks disabled and cannot be pressed. */
+.wp-element-button:disabled,
+.wp-element-button[aria-disabled="true"],
+.wp-block-button__link[aria-disabled="true"],
+.wp-block-button.is-disabled > .wp-block-button__link {
+	opacity: 0.4;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+/* Loading: the label breathes. No spinner. */
+.wp-element-button[aria-busy="true"],
+.wp-block-button__link[aria-busy="true"],
+.wp-block-button.is-loading > .wp-block-button__link {
+	pointer-events: none;
+	animation: daguah-breathe 900ms var(--ease) infinite alternate;
+}
+
+@keyframes daguah-breathe {
+	from { opacity: 1; }
+	to { opacity: 0.45; }
+}
+
+/* 5. Cards, tags, skeletons --------------------------------------------- */
+
+/* Outer radius 16, padding 8, so nested media takes 16 minus 8 = 8. */
+.is-style-card,
+.daguah-card {
+	padding: var(--wp--preset--spacing--75);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--xxl);
+	background: var(--raised);
+}
+
+.daguah-card__media,
+.is-style-card > .wp-block-image img,
+.is-style-card > .wp-block-daguah-cloth {
+	overflow: hidden;
+	border-radius: var(--wp--custom--radius--lg);
+}
+
+.daguah-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--50);
+	padding: var(--wp--preset--spacing--100) var(--wp--preset--spacing--75) var(--wp--preset--spacing--75);
+}
+
+.daguah-card.is-interactive {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+	transition: transform var(--t-layout) var(--ease), border-color var(--t-hover) var(--ease);
+}
+
+.daguah-card.is-interactive:hover {
+	transform: translateY(-4px);
+	border-color: var(--muted);
+}
+
+.daguah-card.is-interactive:active {
+	transform: scale(0.98);
+}
+
+.daguah-card.is-interactive:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.daguah-tag {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--50);
+	padding: var(--wp--preset--spacing--25) var(--wp--preset--spacing--75);
+	border-radius: var(--wp--custom--radius--full);
+	background: var(--wp--custom--color--tag);
+	color: var(--wp--custom--color--on-tag);
+	font-size: var(--wp--preset--font-size--xs);
+	font-weight: 600;
+	line-height: 1rem;
+}
+
+.daguah-tag svg {
+	width: 0.75rem;
+	height: 0.75rem;
+}
+
+.daguah-tag--verified {
+	background: var(--wp--custom--color--success);
+	color: var(--wp--custom--color--on-success);
+}
+
+.daguah-tag--quiet {
+	border: 1px solid var(--line);
+	background: transparent;
+	color: var(--muted);
+}
+
+/* Skeletons are shaped like the layout they stand in for. */
+.daguah-skeleton {
+	display: block;
+	border-radius: var(--wp--custom--radius--base);
+	background: var(--wp--custom--color--skeleton);
+	animation: daguah-breathe 1200ms var(--ease) infinite alternate;
+}
+
+.daguah-skeleton--media {
+	aspect-ratio: 4 / 5;
+	border-radius: var(--wp--custom--radius--lg);
+}
+
+.daguah-skeleton--line {
+	height: 1rem;
+}
+
+.daguah-skeleton--short {
+	width: 40%;
+}
+
+/* 6. Floating header ----------------------------------------------------- */
+
+.wp-site-blocks > header.wp-block-template-part {
+	position: fixed;
+	z-index: 100;
+	top: calc(var(--wp--preset--spacing--100) + var(--wp-admin--admin-bar--height, 0px));
+	right: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	padding-inline: var(--wp--preset--spacing--200);
+	pointer-events: none;
+}
+
+.daguah-nav {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--300);
+	max-width: 100%;
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--75) var(--wp--preset--spacing--75) var(--wp--preset--spacing--200);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--xxl);
+	background: var(--wp--custom--color--nav-surface);
+	-webkit-backdrop-filter: blur(16px) saturate(1.4);
+	backdrop-filter: blur(16px) saturate(1.4);
+	pointer-events: auto;
+}
+
+.daguah-nav .wp-block-site-title {
+	margin: 0;
+	white-space: nowrap;
+}
+
+.daguah-nav .daguah-nav__links {
+	display: none;
+}
+
+.daguah-nav__links .wp-block-navigation__container {
+	gap: var(--wp--preset--spacing--25);
+}
+
+.daguah-nav .wp-block-navigation-item__content {
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--100);
+	border-radius: var(--wp--custom--radius--lg);
+	white-space: nowrap;
+	transition: color var(--t-hover) var(--ease), background-color var(--t-hover) var(--ease);
+}
+
+.daguah-nav .wp-block-navigation-item__content:hover {
+	color: var(--link);
+}
+
+/* The current page is marked in the navigation. */
+.daguah-nav .current-menu-item > .wp-block-navigation-item__content,
+.daguah-nav .wp-block-navigation-item__content[aria-current="page"],
+.daguah-mobile-menu .current-menu-item > .wp-block-navigation-item__content,
+.daguah-mobile-menu .wp-block-navigation-item__content[aria-current="page"] {
+	color: var(--link);
+	font-weight: 600;
+}
+
+.daguah-nav__actions {
+	gap: var(--wp--preset--spacing--25);
+}
+
+/* Icon controls in the header: 24 icon inside 8 padding. */
+.daguah-icon-button,
+.daguah-nav .wp-block-search__button,
+.daguah-nav .wc-block-mini-cart__button,
+.daguah-nav .wp-block-woocommerce-customer-account a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.5rem;
+	height: 2.5rem;
+	margin: 0;
+	padding: var(--wp--preset--spacing--75);
+	border: 0;
+	border-radius: var(--wp--custom--radius--lg);
+	background: transparent;
+	color: var(--text);
+	cursor: pointer;
+	transition: background-color var(--t-hover) var(--ease), color var(--t-hover) var(--ease), transform var(--t-layout) var(--ease);
+}
+
+.daguah-icon-button:hover,
+.daguah-nav .wp-block-search__button:hover,
+.daguah-nav .wc-block-mini-cart__button:hover,
+.daguah-nav .wp-block-woocommerce-customer-account a:hover {
+	background-color: var(--line);
+	color: var(--text);
+}
+
+.daguah-icon-button:active,
+.daguah-nav .wp-block-search__button:active {
+	transform: scale(0.98);
+}
+
+.daguah-icon-button svg,
+.daguah-nav .wp-block-search__button svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: currentColor;
+}
+
+.daguah-nav .wp-block-search {
+	margin: 0;
+}
+
+.daguah-nav .wp-block-search__inside-wrapper {
+	border: 0;
+}
+
+.daguah-nav .wp-block-search__input {
+	height: 2.5rem;
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--100);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--lg);
+	background: var(--base);
+	color: var(--text);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--sm);
+	line-height: 1.25rem;
+}
+
+.daguah-nav .wp-block-search__input::placeholder {
+	color: var(--muted);
+}
+
+/* Theme toggle shows the mode you would switch to. */
+.daguah-theme-toggle .daguah-theme-toggle__noon,
+:root[data-theme="noon"] .daguah-theme-toggle .daguah-theme-toggle__dusk,
+:root[data-default-theme="noon"]:not([data-theme]) .daguah-theme-toggle .daguah-theme-toggle__dusk {
+	display: inline-flex;
+}
+
+.daguah-theme-toggle .daguah-theme-toggle__dusk,
+:root[data-theme="noon"] .daguah-theme-toggle .daguah-theme-toggle__noon,
+:root[data-default-theme="noon"]:not([data-theme]) .daguah-theme-toggle .daguah-theme-toggle__noon {
+	display: none;
+}
+
+/* Menu icon: two lines that fold into a cross. */
+.daguah-menu-toggle__lines {
+	position: relative;
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.daguah-menu-toggle__lines span {
+	position: absolute;
+	right: 2px;
+	left: 2px;
+	height: 2px;
+	border-radius: var(--wp--custom--radius--full);
+	background: currentColor;
+	transition: transform var(--t-layout) var(--ease);
+}
+
+.daguah-menu-toggle__lines span:first-child {
+	top: 7px;
+}
+
+.daguah-menu-toggle__lines span:last-child {
+	top: 15px;
+}
+
+.daguah-menu-toggle[aria-expanded="true"] .daguah-menu-toggle__lines span:first-child {
+	transform: translateY(4px) rotate(45deg);
+}
+
+.daguah-menu-toggle[aria-expanded="true"] .daguah-menu-toggle__lines span:last-child {
+	transform: translateY(-4px) rotate(-45deg);
+}
+
+/* On narrow screens search lives in the menu panel, not the bar. */
+.daguah-nav .wp-block-search {
+	display: none;
+}
+
+/* The toggle needs JS to switch modes, so it only shows once JS is running. */
+html:not(.js) .daguah-theme-toggle {
+	display: none;
+}
+
+@media (min-width: 960px) {
+	.daguah-nav .daguah-nav__links,
+	.daguah-nav .wp-block-search {
+		display: flex;
+	}
+
+	.daguah-nav .daguah-menu-toggle {
+		display: none;
+	}
+}
+
+/* 7. Mobile menu --------------------------------------------------------- */
+
+.daguah-mobile-menu {
+	position: fixed;
+	z-index: 1;
+	inset: 0;
+	pointer-events: auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--400);
+	margin: 0;
+	padding: calc(var(--wp--preset--spacing--900) + var(--wp-admin--admin-bar--height, 0px)) var(--wp--preset--spacing--200) var(--wp--preset--spacing--400);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	background: var(--wp--custom--color--menu-surface);
+	-webkit-backdrop-filter: blur(24px);
+	backdrop-filter: blur(24px);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity var(--t-hover) var(--ease), visibility 0s var(--ease) var(--t-hover);
+}
+
+.daguah-mobile-menu.is-open,
+.daguah-mobile-menu:target {
+	opacity: 1;
+	visibility: visible;
+	transition-delay: 0s;
+}
+
+.daguah-mobile-menu > * {
+	margin-block: 0;
+}
+
+.daguah-mobile-menu .wp-block-search__inside-wrapper {
+	gap: var(--wp--preset--spacing--75);
+	border: 0;
+}
+
+.daguah-mobile-menu .wp-block-search__input {
+	min-width: 0;
+	padding: var(--wp--preset--spacing--75) var(--wp--preset--spacing--100);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--lg);
+	background: var(--raised);
+	color: var(--text);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--base);
+	line-height: 1.5rem;
+}
+
+.daguah-mobile-menu .wp-block-search__button {
+	margin: 0;
+	padding: var(--wp--preset--spacing--75);
+}
+
+.daguah-mobile-menu .wp-block-search__button svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: currentColor;
+}
+
+.daguah-mobile-menu .wp-block-navigation,
+.daguah-mobile-menu .wp-block-navigation__container {
+	width: 100%;
+	gap: var(--wp--preset--spacing--50);
+}
+
+.daguah-mobile-menu .wp-block-navigation-item {
+	width: 100%;
+	opacity: 0;
+	transform: translateY(var(--wp--preset--spacing--300));
+	transition: opacity var(--t-layout) var(--ease), transform var(--t-layout) var(--ease);
+}
+
+.daguah-mobile-menu .wp-block-navigation-item__content {
+	display: block;
+	width: 100%;
+	padding: var(--wp--preset--spacing--75) 0;
+	font-size: var(--wp--preset--font-size--xxxl);
+	font-weight: 600;
+	line-height: 2.25rem;
+}
+
+.daguah-mobile-menu.is-open .wp-block-navigation-item,
+.daguah-mobile-menu:target .wp-block-navigation-item {
+	opacity: 1;
+	transform: none;
+}
+
+/* Links arrive 60ms apart; the whole sequence stays under 400ms. */
+.daguah-mobile-menu .wp-block-navigation-item:nth-child(2) { transition-delay: 60ms; }
+.daguah-mobile-menu .wp-block-navigation-item:nth-child(3) { transition-delay: 120ms; }
+.daguah-mobile-menu .wp-block-navigation-item:nth-child(4) { transition-delay: 180ms; }
+.daguah-mobile-menu .wp-block-navigation-item:nth-child(5) { transition-delay: 240ms; }
+.daguah-mobile-menu .wp-block-navigation-item:nth-child(6) { transition-delay: 300ms; }
+.daguah-mobile-menu .wp-block-navigation-item:nth-child(n + 7) { transition-delay: 360ms; }
+
+.daguah-mobile-menu:not(.is-open):not(:target) .wp-block-navigation-item {
+	transition-delay: 0s;
+}
+
+.daguah-mobile-menu__foot {
+	margin-block-start: auto;
+	gap: var(--wp--preset--spacing--200);
+}
+
+html.daguah-menu-open {
+	overflow: hidden;
+}
+
+@media (min-width: 960px) {
+	.daguah-mobile-menu {
+		display: none;
+	}
+}
+
+/* 8. Footer -------------------------------------------------------------- */
+
+.wp-site-blocks > footer.wp-block-template-part {
+	margin-block-start: var(--wp--preset--spacing--900);
+}
+
+.daguah-footer {
+	padding-block: var(--wp--preset--spacing--700) var(--wp--preset--spacing--400);
+}
+
+.daguah-footer a {
+	color: var(--text);
+	text-decoration: none;
+}
+
+.daguah-footer a:hover {
+	color: var(--link);
+}
+
+.daguah-footer__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--500) var(--wp--preset--spacing--300);
+}
+
+.daguah-footer__grid > * {
+	min-width: 0;
+	margin: 0;
+}
+
+.daguah-footer__brand {
+	grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+	.daguah-footer__grid {
+		grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+	}
+
+	.daguah-footer__brand {
+		grid-column: auto;
+	}
+}
+
+.daguah-footer ul {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--75);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.daguah-footer__legal {
+	margin-block-start: var(--wp--preset--spacing--700);
+	padding-block-start: var(--wp--preset--spacing--300);
+	gap: var(--wp--preset--spacing--100) var(--wp--preset--spacing--300);
+}
+
+/* Not yet live: looks disabled, is not a link. */
+.is-pending {
+	color: var(--muted);
+	cursor: default;
+}
+
+/* 9. Motion utilities ---------------------------------------------------- */
+
+/* Opt in per block with the "Reveal on scroll" toggle. Hidden only when JS runs. */
+.js .daguah-reveal {
+	opacity: 0;
+	transform: translateY(var(--wp--preset--spacing--400));
+	transition:
+		opacity var(--wp--custom--motion--reveal) var(--ease),
+		transform var(--wp--custom--motion--reveal) var(--ease);
+}
+
+.js .daguah-reveal.is-revealed {
+	opacity: 1;
+	transform: none;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+/* Reduced motion: every movement becomes a plain opacity change. */
+@media (prefers-reduced-motion: reduce) {
+	.js .daguah-reveal,
+	.daguah-mobile-menu .wp-block-navigation-item {
+		transform: none;
+	}
+
+	.wp-element-button:active,
+	.wp-block-button__link:active,
+	.daguah-card.is-interactive:hover,
+	.daguah-card.is-interactive:active,
+	.daguah-icon-button:active {
+		transform: none;
+	}
+
+	.daguah-menu-toggle__lines span {
+		transition: none;
+	}
+
+	.daguah-skeleton,
+	.wp-block-button.is-loading > .wp-block-button__link,
+	.wp-element-button[aria-busy="true"] {
+		animation: none;
+	}
+}
+
+/* 10. System sheet (review page) ---------------------------------------- */
+
+/* Column counts are chosen so every row is full: 8 swatches, 4 cards, 6 cloths. */
+.daguah-sheet__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--wp--preset--spacing--200);
+}
+
+.daguah-sheet__grid--wide,
+.daguah-sheet__grid--three {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 600px) {
+	.daguah-sheet__grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.daguah-sheet__grid--wide,
+	.daguah-sheet__grid--three {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1024px) {
+	.daguah-sheet__grid {
+		grid-template-columns: repeat(8, minmax(0, 1fr));
+	}
+
+	.daguah-sheet__grid--wide {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.daguah-sheet__grid--three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.daguah-sheet__grid > * {
+	min-width: 0;
+	margin: 0;
+}
+
+.daguah-swatch__chip {
+	height: var(--wp--preset--spacing--800);
+	border: 1px solid var(--line);
+	border-radius: var(--wp--custom--radius--lg);
+}
+
+.daguah-swatch p,
+.daguah-sheet__row p {
+	margin: 0;
+}
+
+.daguah-swatch {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--75);
+}
+
+.daguah-sheet__row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--wp--preset--spacing--200);
+}
+
+.daguah-sheet__type {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--200);
+}
+
+.daguah-sheet__type > div {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--50);
+}
+
+@media (min-width: 768px) {
+	.daguah-sheet__type > div {
+		grid-template-columns: 9rem minmax(0, 1fr);
+		align-items: baseline;
+		gap: var(--wp--preset--spacing--300);
+	}
+}
+
+.daguah-sheet__type p {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+.daguah-sheet__cloth {
+	height: 10rem;
+}

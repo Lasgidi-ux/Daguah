@@ -1,0 +1,15 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/",
+	"login": true,
+	"steps": [
+		{
+			"step": "activatePlugin",
+			"pluginPath": "daguah-core/daguah-core.php"
+		},
+		{
+			"step": "activateTheme",
+			"themeFolderName": "daguah"
+		}
+	]
+}

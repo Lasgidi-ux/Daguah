@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/occasion-grid",
+	"title": "Shop by occasion",
+	"category": "daguah",
+	"icon": "grid-view",
+	"description": "Occasions as tiles, each in its own cloth. Pick which ones show, or leave empty for the busiest.",
+	"textdomain": "daguah",
+	"attributes": {
+		"ids": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "integer"
+			}
+		},
+		"limit": {
+			"type": "number",
+			"default": 8
+		},
+		"all": {
+			"type": "boolean",
+			"default": false
+		},
+		"dates": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

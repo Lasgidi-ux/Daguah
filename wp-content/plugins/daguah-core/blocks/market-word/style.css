@@ -1,0 +1,39 @@
+/* Market word: every word sits in the same cell; only the active one shows. */
+.wp-block-daguah-market-word {
+	display: inline-flex;
+	align-items: baseline;
+	color: var(--wp--custom--color--action, #D9A21B);
+}
+
+.daguah-market-word__stack {
+	display: inline-grid;
+}
+
+.daguah-market-word__item {
+	display: inline-flex;
+	grid-area: 1 / 1;
+	align-items: baseline;
+	gap: var(--wp--preset--spacing--75, 8px);
+	opacity: 0;
+	transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
+	pointer-events: none;
+}
+
+.daguah-market-word__item.is-active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.daguah-market-word__word {
+	font-size: var(--wp--preset--font-size--sm, 0.875rem);
+	font-weight: 600;
+	line-height: 1.25rem;
+	letter-spacing: 0.04em;
+}
+
+.daguah-market-word__lang {
+	color: var(--wp--custom--color--text-muted, #ABA598);
+	font-size: var(--wp--preset--font-size--xs, 0.75rem);
+	font-weight: 500;
+	line-height: 1rem;
+}

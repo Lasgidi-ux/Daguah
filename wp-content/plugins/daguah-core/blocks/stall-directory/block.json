@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/stall-directory",
+	"title": "Stall directory",
+	"category": "daguah",
+	"icon": "store",
+	"description": "Every open stall, each in its own cloth, filtered by the country it ships from and by verified checks.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"render": "file:./render.php"
+}

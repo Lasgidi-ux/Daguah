@@ -1,0 +1,86 @@
+/* Lantern row: a cloth canopy, a gold thread along its edge, lanterns hanging below. */
+.wp-block-daguah-lantern-row {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+}
+
+.daguah-lantern-row__lanterns {
+	position: relative;
+	display: flex;
+	justify-content: space-around;
+	height: 88px;
+	margin: 0;
+	padding: 0 var(--wp--preset--spacing--200, 16px);
+	list-style: none;
+	border-top: 1px solid var(--wp--custom--color--action, #D9A21B);
+}
+
+.daguah-lantern {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var(--wp--preset--color--lantern, #D9A21B);
+}
+
+.daguah-lantern__string {
+	width: 1px;
+	height: calc(8px + var(--drop, 0px));
+	background: var(--wp--custom--color--line, #313131);
+}
+
+.daguah-lantern svg {
+	display: block;
+	overflow: visible;
+}
+
+.daguah-lantern__cap,
+.daguah-lantern__band {
+	fill: var(--wp--preset--color--night-line, #313131);
+}
+
+.daguah-lantern__body {
+	fill: currentColor;
+	opacity: 0.18;
+	animation: daguah-lantern-warm 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-delay: calc(240ms + var(--i, 0) * 110ms);
+}
+
+.daguah-lantern__glow {
+	fill: currentColor;
+	opacity: 0;
+	transform: scale(1.6);
+	transform-origin: 12px 22px;
+	animation: daguah-lantern-glow 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-delay: calc(240ms + var(--i, 0) * 110ms);
+}
+
+@keyframes daguah-lantern-warm {
+	from { opacity: 0.18; }
+	to { opacity: 1; }
+}
+
+@keyframes daguah-lantern-glow {
+	from { opacity: 0; }
+	to { opacity: 0.16; }
+}
+
+.daguah-lantern-row__cloth {
+	height: 32px;
+}
+
+/* Phones: fewer lanterns fit, so every other one stays dark and out of the way. */
+@media (max-width: 599px) {
+	.daguah-lantern:nth-child(even) {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.daguah-lantern__body,
+	.daguah-lantern__glow {
+		animation-duration: 1ms;
+		animation-delay: 0s;
+	}
+}

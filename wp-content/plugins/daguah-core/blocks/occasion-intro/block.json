@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/occasion-intro",
+	"title": "Occasion intro",
+	"category": "daguah",
+	"icon": "calendar",
+	"description": "An occasion's cloth, name, description, its next date on the cultural calendar and, for family occasions, a way into DAGUAH Circle. Used on the occasion template.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"render": "file:./render.php"
+}

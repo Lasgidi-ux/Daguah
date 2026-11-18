@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/product-facts",
+	"title": "Product facts",
+	"category": "daguah",
+	"icon": "list-view",
+	"description": "Who made it, where, the fabric, condition, size and authenticity notes.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-shop",
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/live-tray",
+	"title": "Market Live tray",
+	"category": "daguah",
+	"icon": "products",
+	"description": "The pieces in a Market Live session's tray, ready to buy while you watch. Used on the session template.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"render": "file:./render.php"
+}

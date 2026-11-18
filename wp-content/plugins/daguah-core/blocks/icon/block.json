@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/icon",
+	"title": "Icon",
+	"category": "daguah",
+	"icon": "star-empty",
+	"description": "A Phosphor icon in a lantern circle. Decorative: the text beside it carries the meaning.",
+	"textdomain": "daguah",
+	"attributes": {
+		"name": { "type": "string", "default": "shield-check" }
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

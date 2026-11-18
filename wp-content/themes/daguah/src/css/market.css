@@ -1,0 +1,49 @@
+/**
+ * Stage 5 page layouts: stalls, occasions, Circle, Send Home, Market Live.
+ *
+ * The blocks style themselves (daguah-core/assets/market.css). This file
+ * only spaces the pages they sit on.
+ */
+
+.daguah-market-page {
+	padding-block: var(--wp--preset--spacing--400) var(--wp--preset--spacing--900);
+}
+
+.daguah-market-page > * + * {
+	margin-block-start: var(--wp--preset--spacing--700);
+}
+
+.daguah-market-page > .daguah-section {
+	padding-block: 0;
+}
+
+.daguah-page-head {
+	padding-block-start: var(--wp--preset--spacing--300);
+}
+
+.daguah-page-head .wp-block-post-title {
+	max-width: 680px;
+	text-wrap: balance;
+}
+
+.daguah-page-head__intro > * {
+	margin-block: 0;
+}
+
+.daguah-page-head__intro > * + * {
+	margin-block-start: var(--wp--preset--spacing--200);
+}
+
+/* Stall page: the cloth runs close under the header. */
+.daguah-stall > * + * {
+	margin-block-start: var(--wp--preset--spacing--700);
+}
+
+/* Market Live session: the longer description reads at a comfortable width. */
+.daguah-live-about {
+	max-width: 680px;
+}
+
+.daguah-live-about .wp-block-post-content > * {
+	margin-block: 0 var(--wp--preset--spacing--200);
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/product-results",
+	"title": "Product results",
+	"category": "daguah",
+	"icon": "grid-view",
+	"description": "The pieces in the current shop view, with sorting, active filters, saving the search and pages.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-shop",
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php"
+}

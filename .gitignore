@@ -1,0 +1,20 @@
+node_modules/
+.wp-env.override.json
+licensed/
+*.log
+.DS_Store
+
+# Built by `npm run build` and copied by `npm run assets`.
+wp-content/themes/daguah/build/
+wp-content/themes/daguah/assets/fonts/
+wp-content/plugins/daguah-core/build/
+wp-content/plugins/daguah-core/assets/icons/
+
+# WooCommerce and Dokan for local Playground runs (npm run fetch-plugins).
+.cache/
+
+# Source footage for the hero video (npm run hero-video).
+media/
+
+# Walkthrough videos (npm run record): large, made on demand.
+docs/recordings/

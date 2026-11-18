@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/live-strip",
+	"title": "Market Live strip",
+	"category": "daguah",
+	"icon": "video-alt3",
+	"description": "The Market Live session on now, or the next one, with the pieces in its tray. Hidden when nothing is scheduled.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"viewScript": "daguah-local-time",
+	"render": "file:./render.php"
+}

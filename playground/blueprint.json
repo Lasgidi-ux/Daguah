@@ -1,0 +1,27 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/",
+	"login": true,
+	"steps": [
+		{
+			"step": "activatePlugin",
+			"pluginPath": "woocommerce/woocommerce.php"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "dokan-lite/dokan.php"
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "daguah-core/daguah-core.php"
+		},
+		{
+			"step": "activateTheme",
+			"themeFolderName": "daguah"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; $r = \\Daguah\\Core\\Seeder::run( static function ( $line ) { error_log( 'daguah seed: ' . $line ); } ); error_log( 'daguah seed result: ' . wp_json_encode( is_wp_error( $r ) ? $r->get_error_message() : $r ) );"
+		}
+	]
+}

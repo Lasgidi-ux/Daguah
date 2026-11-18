@@ -1,0 +1,38 @@
+/* DAGUAH admin screens: settings page, product tab, stall fields. */
+
+.daguah-admin__table {
+	max-width: 760px;
+	margin-block: 12px 24px;
+}
+
+.daguah-admin__table caption {
+	padding-block: 8px;
+	font-weight: 600;
+	text-align: left;
+}
+
+.daguah-admin__table th,
+.daguah-admin__table td {
+	vertical-align: middle;
+}
+
+.daguah-admin__table input[type="number"] {
+	width: 7em;
+}
+
+#daguah_product_data .daguah-admin__group {
+	padding: 0 12px 12px;
+}
+
+#daguah_product_data .daguah-admin__table {
+	max-width: none;
+}
+
+#daguah_product_data .daguah-admin__table select {
+	width: 100%;
+	min-width: 9em;
+}
+
+#daguah_product_data .daguah-admin__wide {
+	width: 100%;
+}

@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/featured-stalls",
+	"title": "Featured stalls",
+	"category": "daguah",
+	"icon": "store",
+	"description": "Stalls with their cloth, story and how long they have been selling. Pick stalls, or leave empty for the most verified.",
+	"textdomain": "daguah",
+	"attributes": {
+		"ids": { "type": "array", "default": [], "items": { "type": "integer" } },
+		"limit": { "type": "number", "default": 4 }
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

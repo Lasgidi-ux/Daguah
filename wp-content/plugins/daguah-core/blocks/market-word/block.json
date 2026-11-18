@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/market-word",
+	"title": "Market word",
+	"category": "daguah",
+	"icon": "translation",
+	"description": "The word for market, cycling through the languages of the people who shop here. Hover or focus shows the language.",
+	"textdomain": "daguah",
+	"attributes": {
+		"words": {
+			"type": "array",
+			"default": [
+				{ "word": "Ọjà", "language": "Yoruba", "lang": "yo" },
+				{ "word": "Ahịa", "language": "Igbo", "lang": "ig" },
+				{ "word": "Kasuwa", "language": "Hausa", "lang": "ha" },
+				{ "word": "Soko", "language": "Swahili", "lang": "sw" },
+				{ "word": "Gebeya", "language": "Amharic", "lang": "am" },
+				{ "word": "Zando", "language": "Lingala", "lang": "ln" },
+				{ "word": "Souk", "language": "Arabic", "lang": "ar" },
+				{ "word": "Marché", "language": "French", "lang": "fr" }
+			]
+		},
+		"interval": { "type": "number", "default": 2600 }
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"viewScript": "file:../../build/market-word.js",
+	"render": "file:./render.php"
+}

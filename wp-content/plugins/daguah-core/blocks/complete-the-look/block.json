@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/complete-the-look",
+	"title": "Complete the look",
+	"category": "daguah",
+	"icon": "screenoptions",
+	"description": "Pieces that go with this one: the cross sells, or pieces for the same occasion.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-shop",
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php",
+	"attributes": {
+		"limit": {
+			"type": "number",
+			"default": 4
+		}
+	}
+}

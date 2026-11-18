@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Market at Noon",
+	"settings": {
+		"custom": {
+			"color": {
+				"base": "#F2EADB",
+				"raised": "#FBF6EC",
+				"line": "#D5C9B2",
+				"skeleton": "#E6DCC8",
+				"text": "#131209",
+				"textMuted": "#5A5546",
+				"action": "#131209",
+				"actionText": "#F2EADB",
+				"actionHover": "#D9A21B",
+				"actionHoverText": "#131209",
+				"link": "#24306B",
+				"focus": "#24306B",
+				"secondary": "#24306B",
+				"onSecondary": "#F2EADB",
+				"tag": "#B5532A",
+				"onTag": "#FFFFFF",
+				"success": "#2F5D46",
+				"onSuccess": "#F2EADB",
+				"navSurface": "rgba(251, 246, 236, 0.78)",
+				"menuSurface": "rgba(242, 234, 219, 0.92)",
+				"heroFrom": "#000000",
+				"heroTo": "#666666"
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+/* Icon: 24px glyph in a 48px circle with a full border. */
+.wp-block-daguah-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border: 1px solid var(--wp--custom--color--line, #313131);
+	border-radius: 9999px;
+	color: var(--wp--custom--color--action, #D9A21B);
+}
+
+.wp-block-daguah-icon svg {
+	width: 24px;
+	height: 24px;
+	fill: currentColor;
+}

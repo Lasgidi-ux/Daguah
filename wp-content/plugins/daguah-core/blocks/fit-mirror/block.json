@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/fit-mirror",
+	"title": "Fit Mirror",
+	"category": "daguah",
+	"icon": "admin-users",
+	"description": "A button that opens the Fit Mirror panel, where buyers save their measurements.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-shop",
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php",
+	"attributes": {
+		"showLabel": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

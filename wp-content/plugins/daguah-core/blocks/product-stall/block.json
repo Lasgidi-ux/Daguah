@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/product-stall",
+	"title": "Product stall",
+	"category": "daguah",
+	"icon": "store",
+	"description": "The stall that sells this piece.",
+	"textdomain": "daguah",
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "daguah-core-editor",
+	"style": [
+		"daguah-shop",
+		"file:../featured-stalls/style.css"
+	],
+	"viewScript": "daguah-shop",
+	"render": "file:./render.php"
+}

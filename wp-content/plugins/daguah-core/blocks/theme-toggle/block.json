@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/theme-toggle",
+	"title": "Dusk and noon toggle",
+	"category": "daguah",
+	"icon": "lightbulb",
+	"description": "Switches between Market at Dusk and Market at Noon and remembers the choice.",
+	"textdomain": "daguah",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "daguah-core-editor",
+	"viewScript": "file:../../build/theme-toggle.js",
+	"render": "file:./render.php"
+}

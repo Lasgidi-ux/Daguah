@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/lantern-words",
+	"title": "Lantern words",
+	"category": "daguah",
+	"icon": "editor-quote",
+	"description": "A large tagline whose words light up one at a time, in reading order, as it scrolls into view.",
+	"textdomain": "daguah",
+	"attributes": {
+		"lines": {
+			"type": "array",
+			"items": { "type": "string" },
+			"default": [ "Made at home.", "Worn everywhere.", "Passed on with pride." ]
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "file:./style.css",
+	"viewScript": "file:../../build/lantern-words.js",
+	"render": "file:./render.php"
+}

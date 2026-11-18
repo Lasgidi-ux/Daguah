@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "daguah/circle-start",
+	"title": "Start a circle",
+	"category": "daguah",
+	"icon": "groups",
+	"description": "The form a signed in buyer uses to start a DAGUAH Circle and get the invite link for the family.",
+	"textdomain": "daguah",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false
+	},
+	"editorScript": "daguah-core-editor",
+	"style": "daguah-market",
+	"viewScript": "daguah-circle",
+	"render": "file:./render.php"
+}
