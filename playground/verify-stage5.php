@@ -374,11 +374,11 @@ $pages = array(
 );
 
 foreach ( $pages as $slug => list( $template, $marker ) ) {
-	$page    = get_page_by_path( $slug );
-	$content = $page ? (string) $page->post_content : '';
-	$check( "Page /{$slug}/ has its real opening, not the stage stub", $page && ! str_contains( $content, 'arrives in stage' ) && str_contains( $content, substr( $data['intros'][ $slug ], 0, 30 ) ), substr( $content, 0, 120 ) );
+	$page_post    = get_page_by_path( $slug );
+	$content = $page_post ? (string) $page_post->post_content : '';
+	$check( "Page /{$slug}/ has its real opening, not the stage stub", $page_post && ! str_contains( $content, 'arrives in stage' ) && str_contains( $content, substr( $data['intros'][ $slug ], 0, 30 ) ), substr( $content, 0, 120 ) );
 
-	$html = $render_template( $template, array( 'page_id' => $page ? $page->ID : 0 ) );
+	$html = $render_template( $template, array( 'page_id' => $page_post ? $page_post->ID : 0 ) );
 	$check( "Page /{$slug}/ renders: one h1, its intro and its block", ! str_starts_with( $html, 'RENDER ERROR' ) && 1 === substr_count( $html, '<h1' ) && str_contains( $html, $marker ) && str_contains( $html, esc_html( substr( $data['intros'][ $slug ], 0, 30 ) ) ), array( substr_count( $html, '<h1' ), substr( $html, 0, 200 ) ) );
 	$check( "Page /{$slug}/ copy: no hyphens inside words, no exclamation marks", ! $copy_problems( $html ), $copy_problems( $html ) );
 }

@@ -44,6 +44,15 @@
 				"--core-only"
 			],
 			"port": 9400
+		},
+		{
+			"name": "daguah-verify-4-5",
+			"runtimeExecutable": "node",
+			"runtimeArgs": [
+				"scripts/playground.mjs",
+				"--verify=4,5"
+			],
+			"port": 9400
 		}
 	]
 }

@@ -168,22 +168,24 @@ $render_product = static function ( int $id ): string {
 	return $html;
 };
 
-$page = $render_product( $skirt );
-$check( 'Product page renders', ! str_starts_with( $page, 'RENDER ERROR' ) && str_contains( $page, 'Indigo adire wrap skirt' ), substr( $page, 0, 200 ) );
-$check( 'Product page: cloth and the photo to come, as there is no photo yet', str_contains( $page, 'daguah-media__placeholder' ) && str_contains( $page, 'Photo to come: Hands lifting the skirt' ) );
-$check( 'Product page: the Thread reads "Dyed in Abeokuta, arriving in London in 6 to 9 days."', str_contains( $page, 'Dyed in Abeokuta, arriving in London in 6 to 9 days.' ) );
-$check( 'Product page: landed price to the UK totals £95.16', str_contains( $page, '95.16' ) );
-$check( 'Product page: measurements table with 3 rows and a fit chip', 3 === substr_count( $page, '<th scope="row">' ) && str_contains( $page, 'daguah-fit-chip' ) );
-$check( 'Product page: facts name the maker', str_contains( $page, 'Ṣadé Adébáyọ̀' ) );
-$check( 'Product page: DAGUAH Hold line and the stall card', str_contains( $page, 'Your payment is held until you confirm delivery.' ) && str_contains( $page, 'daguah-stall-card' ) );
-$check( 'Product page: no Heritage Passport on a new piece', ! str_contains( $page, 'wp-block-daguah-heritage-passport' ) );
-$check( 'Product page: add to cart form is there', str_contains( $page, 'add-to-cart' ) || str_contains( $page, 'single_add_to_cart_button' ) );
-$check( 'Product page: complete the look shows other stalls for the same occasions', str_contains( $page, 'Complete the look' ) && substr_count( $page, 'daguah-product-card"' ) + substr_count( $page, 'daguah-product-card ' ) >= 1 );
+// Not $page: WordPress keeps the page number in a global of that name and
+// resets it whenever a post is set up, and these checks run in global scope.
+$product_page = $render_product( $skirt );
+$check( 'Product page renders', ! str_starts_with( $product_page, 'RENDER ERROR' ) && str_contains( $product_page, 'Indigo adire wrap skirt' ), substr( $product_page, 0, 200 ) );
+$check( 'Product page: cloth and the photo to come, as there is no photo yet', str_contains( $product_page, 'daguah-media__placeholder' ) && str_contains( $product_page, 'Photo to come: Hands lifting the skirt' ) );
+$check( 'Product page: the Thread reads "Dyed in Abeokuta, arriving in London in 6 to 9 days."', str_contains( $product_page, 'Dyed in Abeokuta, arriving in London in 6 to 9 days.' ) );
+$check( 'Product page: landed price to the UK totals £95.16', str_contains( $product_page, '95.16' ) );
+$check( 'Product page: measurements table with 3 rows and a fit chip', 3 === substr_count( $product_page, '<th scope="row">' ) && str_contains( $product_page, 'daguah-fit-chip' ) );
+$check( 'Product page: facts name the maker', str_contains( $product_page, 'Ṣadé Adébáyọ̀' ) );
+$check( 'Product page: DAGUAH Hold line and the stall card', str_contains( $product_page, 'Your payment is held until you confirm delivery.' ) && str_contains( $product_page, 'daguah-stall-card' ) );
+$check( 'Product page: no Heritage Passport on a new piece', ! str_contains( $product_page, 'wp-block-daguah-heritage-passport' ) );
+$check( 'Product page: add to cart form is there', str_contains( $product_page, 'add-to-cart' ) || str_contains( $product_page, 'single_add_to_cart_button' ) );
+$check( 'Product page: complete the look shows other stalls for the same occasions', str_contains( $product_page, 'Complete the look' ) && substr_count( $product_page, 'daguah-product-card"' ) + substr_count( $product_page, 'daguah-product-card ' ) >= 1 );
 
 $agbada_page = $render_product( $agbada );
 $check( 'Preloved agbada page shows its Heritage Passport with 2 stamps', 2 === substr_count( $agbada_page, 'class="daguah-stamp"' ) && str_contains( $agbada_page, 'Worn to my' ) === false && str_contains( $agbada_page, 'Made for my brother' ) );
 
-$text = wp_strip_all_tags( (string) preg_replace( '#<(script|style|svg)\b.*?</\1>#s', ' ', $page ) );
+$text = wp_strip_all_tags( (string) preg_replace( '#<(script|style|svg)\b.*?</\1>#s', ' ', $product_page ) );
 preg_match_all( '/\p{L}-\p{L}/u', $text, $hyphens );
 $check( 'Product page copy has no hyphens inside words', ! $hyphens[0], array_values( array_unique( $hyphens[0] ) ) );
 
@@ -212,8 +214,15 @@ do_action( 'wp_footer' );
 $footer = (string) ob_get_clean();
 $check(
 	'Header has the currency switcher and Fit Mirror button; the panel prints once, after the header',
-	str_contains( $page, 'data-daguah-currency' ) && str_contains( $page, 'data-open-fit-mirror' ) && ! str_contains( $page, 'id="daguah-fit-mirror"' ) && 1 === substr_count( $footer, 'id="daguah-fit-mirror"' ),
-	array( 'in page' => substr_count( $page, 'id="daguah-fit-mirror"' ), 'in footer' => substr_count( $footer, 'id="daguah-fit-mirror"' ) )
+	str_contains( $product_page, 'data-daguah-currency' ) && str_contains( $product_page, 'data-open-fit-mirror' ) && ! str_contains( $product_page, 'id="daguah-fit-mirror"' ) && 1 === substr_count( $footer, 'id="daguah-fit-mirror"' ),
+	array(
+		'currency switcher' => substr_count( $product_page, 'data-daguah-currency' ),
+		'fit button'        => substr_count( $product_page, 'data-open-fit-mirror' ),
+		'header'            => substr_count( $product_page, '<header' ),
+		'panel in page'     => substr_count( $product_page, 'id="daguah-fit-mirror"' ),
+		'panel in footer'   => substr_count( $footer, 'id="daguah-fit-mirror"' ),
+		'page starts'       => substr( $product_page, 0, 300 ),
+	)
 );
 
 /* Map ---------------------------------------------------------------------- */
