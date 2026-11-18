@@ -207,7 +207,7 @@ Five shots of hands at work: indigo lifted from the dye pot in Abeokuta, a shutt
 - A shade behind the words keeps the headline readable: dark on the left where the text sits, open on the right where the hands are, and solid across the film on phones. The cover's own overlay is 30%.
 - The five clips are AI generated from a five shot brief. The two loom and dye clips are 1280 × 720; the lace, leather and parcel clips are only 640 × 360, upscaled, which is soft at full width. Footage of real makers, at 1080p or better, would be the upgrade.
 
-**Rebuilding it.** The source clips live in `media/hero/` (git ignored), named in running order: `1-dye.mp4`, `2-loom.mp4`, `3-lace.mp4`, `4-leather.mp4`, `5-parcel.mp4`. Replace any of them, then run `npm run hero-video` (needs ffmpeg). Which part of each clip is used and where the portrait crop sits are set at the top of `scripts/hero-video.mjs`.
+**Rebuilding it.** The source clips live in `media/hero/`, named in running order: `1-dye.mp4`, `2-loom.mp4`, `3-lace.mp4`, `4-leather.mp4`, `5-parcel.mp4`. Replace any of them, then run `npm run hero-video` (needs ffmpeg). Which part of each clip is used and where the portrait crop sits are set at the top of `scripts/hero-video.mjs`.
 
 **Blocks added in Stage 3:** Market word, Lantern row, Cultural calendar, Shop by occasion, Featured stalls, Market Live strip, Lantern words and Icon. All render on the server; their scripts load only on pages that use them.
 

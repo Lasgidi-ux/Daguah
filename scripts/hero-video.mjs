@@ -10,7 +10,7 @@
  *   assets/video/opening.jpg           still shown before the video plays
  *   assets/video/opening-portrait.jpg
  *
- * Source clips live in media/hero (git ignored), named in running order.
+ * Source clips live in media/hero, named in running order.
  * To swap in real footage, replace a clip and run: npm run hero-video
  *
  * Needs ffmpeg on the PATH.

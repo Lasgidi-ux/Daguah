@@ -13,8 +13,6 @@ wp-content/plugins/daguah-core/assets/icons/
 # WooCommerce and Dokan for local Playground runs (npm run fetch-plugins).
 .cache/
 
-# Source footage for the hero video (npm run hero-video).
-media/
 
 # Walkthrough videos (npm run record): large, made on demand.
 docs/recordings/
